@@ -1,0 +1,37 @@
+<kendo-splitter orientation="horizontal" >
+
+  <kendo-splitter-pane>
+    
+  </kendo-splitter-pane>
+  <kendo-splitter-pane>
+    <kendo-splitter orientation="vertical">
+
+      <kendo-splitter-pane [collapsible]="true" size="30%">
+        <div class="pane-content">
+          <h3>Files</h3>
+          <kendo-grid [data]="files" [height]="410">
+            <kendo-grid-column field="fileName" title="File Name" >
+            </kendo-grid-column>
+            <kendo-grid-column field="path" title="Path">
+            </kendo-grid-column>
+            <kendo-grid-column field="extension" title="Extension">
+            </kendo-grid-column>
+           
+        </kendo-grid>
+        </div>
+      </kendo-splitter-pane>
+
+      <kendo-splitter-pane>
+        <div class="pane-content">
+          <h3>Preview</h3>
+          <web-viewer></web-viewer>
+        </div>
+      </kendo-splitter-pane>
+
+      
+
+    </kendo-splitter>
+  </kendo-splitter-pane>
+
+ 
+</kendo-splitter>
