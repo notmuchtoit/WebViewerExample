@@ -1,18 +1,18 @@
 <kendo-splitter orientation="horizontal" >
 
   <kendo-splitter-pane>
-    
+
   </kendo-splitter-pane>
   <kendo-splitter-pane>
     <kendo-splitter orientation="vertical">
 
-      <kendo-splitter-pane [collapsible]="true" size="30%">
+      <kendo-splitter-pane [collapsible]="true" >
         <div class="pane-content">
           <h3>Files</h3>
-          <kendo-grid [data]="files" 
+          <kendo-grid [data]="files"
           (selectionChange)="onSelectionChange($event)"
-          [selectable]="selectableSettings"  
-          [rowSelected]="isRowSelected" 
+          [selectable]="selectableSettings"
+          [rowSelected]="isRowSelected"
           [height]="410">
             <kendo-grid-column field="fileName" title="File Name" >
             </kendo-grid-column>
@@ -20,7 +20,7 @@
             </kendo-grid-column>
             <kendo-grid-column field="extension" title="Extension">
             </kendo-grid-column>
-           
+
         </kendo-grid>
         </div>
       </kendo-splitter-pane>
@@ -32,10 +32,10 @@
         </div>
       </kendo-splitter-pane>
 
-      
+
 
     </kendo-splitter>
   </kendo-splitter-pane>
 
- 
+
 </kendo-splitter>
