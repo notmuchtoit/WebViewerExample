@@ -49,7 +49,6 @@ export class WebViewerComponent implements OnInit, AfterViewInit, OnChanges {
         this.extension = this.inpFile.extension;
           if(this.wvInstance){
             if(this.extension === 'PDF'){
-             
             }
             this.wvInstance.loadDocument(this.path, {extension: this.extension});
           }

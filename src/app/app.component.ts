@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   @ViewChild('viewer', {static: false}) viewer: ElementRef;
   path:string = '';
   extension: string = ''
@@ -52,11 +52,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   onSelectionChange(e: SelectionEvent){
     this.selectedFile = e.selectedRows[0].dataItem;
     
-  }
-
-  ngAfterViewInit(){
-    this.path = this.files[0].path;
-    this.extension = this.files[0].extension;
   }
 
   ngOnInit(){

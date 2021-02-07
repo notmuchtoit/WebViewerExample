@@ -28,7 +28,7 @@
       <kendo-splitter-pane>
         <div class="pane-content">
           <h3>Preview</h3>
-          <web-viewer [inpFile]="selectedFile"></web-viewer>
+          <web-viewer *ngIf="selectedFile" [inpFile]="selectedFile"></web-viewer>
         </div>
       </kendo-splitter-pane>
 
