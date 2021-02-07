@@ -1,4 +1,5 @@
-import { Component, ViewChild, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { IFile } from '../dto/IFile';
 
 declare const WebViewer: any;
 
@@ -7,11 +8,14 @@ declare const WebViewer: any;
   templateUrl: './webviewer.component.html',
   styleUrls: ['./webviewer.component.css']
 })
-export class WebViewerComponent implements OnInit, AfterViewInit {
+export class WebViewerComponent implements OnInit, AfterViewInit, OnChanges {
 
   // Syntax if using Angular 8+
   // true or false depending on code
   @ViewChild('viewer', {static: false}) viewer: ElementRef;
+  @Input() inpFile: IFile; 
+  path: string = '';
+  extension: string = "";
 
   wvInstance: any;
 
@@ -22,7 +26,7 @@ export class WebViewerComponent implements OnInit, AfterViewInit {
   wvDocumentLoadedHandler(): void {
     // you can access docViewer object for low-level APIs
     const docViewer = this.wvInstance;
-    const annotManager = this.wvInstance.annotManager;
+/*     const annotManager = this.wvInstance.annotManager;
     // and access classes defined in the WebViewer iframe
     const { Annotations } = this.wvInstance;
     const rectangle = new Annotations.RectangleAnnotation();
@@ -34,8 +38,24 @@ export class WebViewerComponent implements OnInit, AfterViewInit {
     rectangle.StrokeThickness = 5;
     rectangle.Author = annotManager.getCurrentUser();
     annotManager.addAnnotation(rectangle);
-    annotManager.drawAnnotations(rectangle.PageNumber);
+    annotManager.drawAnnotations(rectangle.PageNumber); */
     // see https://www.pdftron.com/api/web/WebViewerInstance.html for the full list of low-level APIs
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+      if (changes['inpFile']) {
+        if(this.inpFile){
+          this.path = this.inpFile.path;
+        this.extension = this.inpFile.extension;
+          if(this.wvInstance){
+            if(this.extension === 'PDF'){
+             
+            }
+            this.wvInstance.loadDocument(this.path, {extension: this.extension});
+          }
+        }
+        
+    }
   }
 
   ngAfterViewInit(): void {
@@ -44,12 +64,11 @@ export class WebViewerComponent implements OnInit, AfterViewInit {
 
     WebViewer({
       path: '../../wv-resources/lib',
-      initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/webviewer-demo.pdf'
     }, this.viewer.nativeElement).then(instance => {
       this.wvInstance = instance;
 
       // now you can access APIs through this.webviewer.getInstance()
-      instance.openElement('notesPanel');
+      //instance.openElement('notesPanel');
       // see https://www.pdftron.com/documentation/web/guides/ui/apis 
       // for the full list of APIs
 
@@ -60,11 +79,12 @@ export class WebViewerComponent implements OnInit, AfterViewInit {
       });
 
       // or from the docViewer instance
-      instance.docViewer.on('annotationsLoaded', () => {
+     /*  instance.docViewer.on('annotationsLoaded', () => {
         console.log('annotations loaded');
       });
 
-      instance.docViewer.on('documentLoaded', this.wvDocumentLoadedHandler)
+      instance.docViewer.on('documentLoaded', this.wvDocumentLoadedHandler) */
+      instance.loadDocument(this.path, { extension: this.extension});
     })
   }
 }

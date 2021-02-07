@@ -9,7 +9,11 @@
       <kendo-splitter-pane [collapsible]="true" size="30%">
         <div class="pane-content">
           <h3>Files</h3>
-          <kendo-grid [data]="files" [height]="410">
+          <kendo-grid [data]="files" 
+          (selectionChange)="onSelectionChange($event)"
+          [selectable]="selectableSettings"  
+          [rowSelected]="isRowSelected" 
+          [height]="410">
             <kendo-grid-column field="fileName" title="File Name" >
             </kendo-grid-column>
             <kendo-grid-column field="path" title="Path">
@@ -24,7 +28,7 @@
       <kendo-splitter-pane>
         <div class="pane-content">
           <h3>Preview</h3>
-          <web-viewer></web-viewer>
+          <web-viewer [inpFile]="selectedFile"></web-viewer>
         </div>
       </kendo-splitter-pane>
 
