@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   extension: string = '';
   selectedFile$: Observable<IFile> = {} as Observable<IFile>;
   selectedFile: IFile;
-  title = 'my-first-angular-project';
+  title = 'PDFTRON WebViewer Example';
   files: IFile[] = [
     {
       fileName: 'Book1',
