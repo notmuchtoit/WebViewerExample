@@ -8,25 +8,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { WebViewerComponent } from './webviewer/webviewer.component';
-
-
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { ApiService } from './service/ApiService';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WebViewerComponent
-  ],
+  declarations: [AppComponent, WebViewerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     InputsModule,
     BrowserAnimationsModule,
     GridModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule,
+    UploadModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ApiService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

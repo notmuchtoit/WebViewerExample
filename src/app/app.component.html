@@ -1,13 +1,20 @@
-<kendo-splitter orientation="horizontal" >
+<kendo-splitter orientation="horizontal" style="height: 100%;">
 
-  <kendo-splitter-pane>
+  <kendo-splitter-pane size='50%'>
+    <kendo-upload
+    [saveUrl]="uploadSaveUrl"
+    [multiple]="false"
+    [withCredentials]="false">
+      <kendo-upload-messages select="Add Files">
+      </kendo-upload-messages>
+    </kendo-upload>
 
   </kendo-splitter-pane>
   <kendo-splitter-pane>
     <kendo-splitter orientation="vertical">
 
       <kendo-splitter-pane [collapsible]="true" >
-        <div class="pane-content">
+        <div class="pane-content" style="height: 100%;">
           <h3>Files</h3>
           <kendo-grid [data]="files"
           (selectionChange)="onSelectionChange($event)"
@@ -26,7 +33,7 @@
       </kendo-splitter-pane>
 
       <kendo-splitter-pane>
-        <div class="pane-content">
+        <div class="pane-content" style="height: 100%;">
           <h3>Preview</h3>
           <web-viewer *ngIf="selectedFile" [inpFile]="selectedFile" FitMode='Zoom'></web-viewer>
         </div>
